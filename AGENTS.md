@@ -30,3 +30,4 @@ use the editor.
 <!-- LOVABLE:END -->
 
 - Application route modules use TanStack Start file-based routing, the generated Supabase client, and route-local metadata; preserve the starter router, root shell, and Cloud auth middleware.
+- Public application tracking stays behind the authenticated owner-scoped lookup; the home interface must never broaden CNIC-based status access to anonymous visitors.
