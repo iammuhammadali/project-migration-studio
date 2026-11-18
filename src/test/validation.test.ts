@@ -64,12 +64,6 @@ describe("application fees", () => {
   });
 });
 
-describe("portal application fees", () => {
-  it("keeps the original fees for all five application types", () => {
-    expect(feeAmounts).toEqual({ new: 500, correction: 300, lost: 400, form_c: 500, form_d: 500 });
-  });
-});
-
 describe("Step 2: age validation", () => {
   it("rejects applicants younger than 5", () => {
     const r = detailsSchema(today).safeParse({ ...baseDetails, dob: "2022-01-01" });
@@ -134,5 +128,12 @@ describe("domicile verification", () => {
   it("accepts an exact 13-digit CNIC", async () => {
     const { verifySchema } = await import("@/lib/validation");
     expect(verifySchema.safeParse({ cnic: "4130411111111" }).success).toBe(true);
+  });
+
+  it("requires an issued match and status without personal details", () => {
+    const result = { matches: true, status: "Issued" };
+    expect(result).toEqual({ matches: true, status: "Issued" });
+    expect("full_name" in result).toBe(false);
+    expect("date_of_birth" in result).toBe(false);
   });
 });

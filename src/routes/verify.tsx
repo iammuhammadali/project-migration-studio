@@ -11,11 +11,12 @@ import { cn } from "@/lib/utils";
 import { portalHead } from "@/lib/page-metadata";
 
 export const Route = createFileRoute("/verify")({
-  head: () => portalHead("Domicile Verification — Sindh Domicile & PRC Portal", "Verify an issued Sindh domicile certificate by CNIC and view its details and status."),
+  head: () => portalHead("Domicile Verification — Sindh Domicile & PRC Portal", "Check whether an issued Sindh domicile matches a CNIC without revealing personal details."),
   component: VerifyDomicile,
 });
 
 type Domicile = {
+  matches: boolean;
   status: string;
 };
 
@@ -35,7 +36,7 @@ function VerifyDomicile() {
     }
     setError(undefined);
     setBusy(true);
-    const { data, error: rpcError } = await supabase.rpc("verify_domicile", { p_cnic: parsed.data.cnic });
+    const { data, error: rpcError } = await supabase.rpc("verify_domicile_status", { p_cnic: parsed.data.cnic });
     setBusy(false);
     if (rpcError) {
       setError("Could not verify right now. Please try again.");
@@ -44,7 +45,7 @@ function VerifyDomicile() {
     setResult(data?.[0] ?? null);
   };
 
-  const issued = result?.status.toLowerCase() === "issued";
+  const issued = result?.matches === true && result.status.toLowerCase() === "issued";
 
   return (
     <MobileShell>
@@ -55,7 +56,7 @@ function VerifyDomicile() {
             <BadgeCheck className="size-6" />
           </div>
           <h2 className="text-2xl font-bold">Verify a domicile</h2>
-          <p className="text-sm text-muted-foreground">Enter the CNIC number to see the details of an issued domicile.</p>
+          <p className="text-sm text-muted-foreground">Enter a CNIC to check whether an issued domicile matches. Personal details are not shown.</p>
         </div>
 
         <form onSubmit={submit} className="glass-card animate-rise space-y-4 p-4" noValidate>
@@ -84,7 +85,7 @@ function VerifyDomicile() {
             <CircleAlert className="mt-0.5 size-5 shrink-0 text-destructive" />
             <div>
               <p className="font-semibold">No domicile found</p>
-                <p className="text-sm text-muted-foreground">No issued domicile is registered against this CNIC.</p>
+              <p className="text-sm text-muted-foreground">No issued domicile is registered against this CNIC.</p>
             </div>
           </div>
         )}
@@ -92,7 +93,7 @@ function VerifyDomicile() {
         {result && (
           <section aria-label="Domicile details" className="glass-card animate-rise overflow-hidden">
             <div className="flex items-center justify-between gap-3 border-b px-4 py-3">
-              <h3 className="font-semibold">Domicile Details</h3>
+              <h3 className="font-semibold">Certificate Status</h3>
               <span
                 className={cn(
                   "rounded-full px-3 py-1 text-xs font-semibold",

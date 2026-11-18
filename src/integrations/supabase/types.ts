@@ -237,6 +237,13 @@ export type Database = {
           tehsil: string
         }[]
       }
+      verify_domicile_status: {
+        Args: { p_cnic: string }
+        Returns: {
+          matches: boolean
+          status: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never

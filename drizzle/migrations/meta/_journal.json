@@ -15,6 +15,13 @@
       "when": 1794992976909,
       "tag": "0001_limit_public_certificate_verification",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794993574928,
+      "tag": "0002_restrict_public_domicile_lookup",
+      "breakpoints": true
     }
   ]
 }
