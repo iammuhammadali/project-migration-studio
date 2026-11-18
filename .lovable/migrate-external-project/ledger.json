@@ -1,0 +1,18 @@
+{
+  "source": "code archive: pixel-perfect-echo-9538-main.zip",
+  "capabilities": [
+    { "capability": "application code and routes", "source": "TanStack Start portal", "outcome": "migrate", "status": "pending", "next_action": "Port the portal routes and user flows into this project." },
+    { "capability": "database schema", "source": "Drizzle/Postgres migration files", "outcome": "migrate to Lovable Cloud", "status": "pending", "next_action": "Recreate the profiles, application types, applications, application documents, and issued domicile verification schema with access policies." },
+    { "capability": "application records", "source": "No record export in archive", "outcome": "migrate", "status": "pending", "next_action": "Request sanitized CSV or JSON table exports after preview." },
+    { "capability": "authentication identities", "source": "CNIC-keyed email/password accounts; no user export", "outcome": "migrate", "status": "pending", "next_action": "Request original user IDs, email addresses, profile data, and roles; preserve first-login verification and password setup." },
+    { "capability": "authorization and ownership", "source": "Authenticated applicant RLS and per-user storage policies", "outcome": "migrate", "status": "pending", "next_action": "Recreate per-user and per-application ownership boundaries in Lovable Cloud." },
+    { "capability": "uploaded document bytes", "source": "Private applicant-documents bucket; no file export", "outcome": "migrate", "status": "pending", "next_action": "Request the existing files separately from the records export." },
+    { "capability": "static portal images", "source": "Three Lovable asset pointers in archive", "outcome": "migrate", "status": "pending", "next_action": "Check whether image bytes can be recovered and add to this project." },
+    { "capability": "external providers", "source": "No non-platform providers detected", "outcome": "none detected", "status": "verified", "next_action": null },
+    { "capability": "public endpoints and callbacks", "source": "No external API routes or callbacks detected", "outcome": "none detected", "status": "verified", "next_action": null },
+    { "capability": "webhooks and schedules", "source": "No webhooks or schedules detected", "outcome": "none detected", "status": "verified", "next_action": null },
+    { "capability": "secrets", "source": "Archive references LOVABLE_DB_MIGRATION_URL; .env excluded", "outcome": "not migrated", "status": "pending", "next_action": "Do not reuse source credentials; use the managed Lovable Cloud connection." },
+    { "capability": "cutover", "source": "No source deployment URL supplied", "outcome": "pending", "status": "pending", "next_action": "Confirm source deployment cutover after records and users are verified." },
+    { "capability": "verification", "source": "Not run", "outcome": "pending", "status": "pending", "next_action": "Verify portal flows, data access, and representative writes after implementation." }
+  ]
+}
