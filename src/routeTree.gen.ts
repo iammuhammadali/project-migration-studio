@@ -10,33 +10,200 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as VerifyRouteImport } from './routes/verify'
+import { Route as AuthenticatedApplicantCnicRouteImport } from './routes/_authenticated/applicant-cnic'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedApplicationIdRouteImport } from './routes/_authenticated/application.$id'
+import { Route as AuthenticatedApplicationIdAdditionalRouteImport } from './routes/_authenticated/application.$id.additional'
+import { Route as AuthenticatedApplicationIdDetailsRouteImport } from './routes/_authenticated/application.$id.details'
+import { Route as AuthenticatedApplicationIdElectoralRouteImport } from './routes/_authenticated/application.$id.electoral'
+import { Route as AuthenticatedApplicationIdFeeRouteImport } from './routes/_authenticated/application.$id.fee'
+import { Route as AuthenticatedApplicationIdPersonalRouteImport } from './routes/_authenticated/application.$id.personal'
+import { Route as AuthenticatedApplicationIdPhotoRouteImport } from './routes/_authenticated/application.$id.photo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifyRoute = VerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedApplicantCnicRoute =
+  AuthenticatedApplicantCnicRouteImport.update({
+    id: '/applicant-cnic',
+    path: '/applicant-cnic',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedApplicationIdRoute =
+  AuthenticatedApplicationIdRouteImport.update({
+    id: '/application/$id',
+    path: '/application/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedApplicationIdAdditionalRoute =
+  AuthenticatedApplicationIdAdditionalRouteImport.update({
+    id: '/additional',
+    path: '/additional',
+    getParentRoute: () => AuthenticatedApplicationIdRoute,
+  } as any)
+const AuthenticatedApplicationIdDetailsRoute =
+  AuthenticatedApplicationIdDetailsRouteImport.update({
+    id: '/details',
+    path: '/details',
+    getParentRoute: () => AuthenticatedApplicationIdRoute,
+  } as any)
+const AuthenticatedApplicationIdElectoralRoute =
+  AuthenticatedApplicationIdElectoralRouteImport.update({
+    id: '/electoral',
+    path: '/electoral',
+    getParentRoute: () => AuthenticatedApplicationIdRoute,
+  } as any)
+const AuthenticatedApplicationIdFeeRoute =
+  AuthenticatedApplicationIdFeeRouteImport.update({
+    id: '/fee',
+    path: '/fee',
+    getParentRoute: () => AuthenticatedApplicationIdRoute,
+  } as any)
+const AuthenticatedApplicationIdPersonalRoute =
+  AuthenticatedApplicationIdPersonalRouteImport.update({
+    id: '/personal',
+    path: '/personal',
+    getParentRoute: () => AuthenticatedApplicationIdRoute,
+  } as any)
+const AuthenticatedApplicationIdPhotoRoute =
+  AuthenticatedApplicationIdPhotoRouteImport.update({
+    id: '/photo',
+    path: '/photo',
+    getParentRoute: () => AuthenticatedApplicationIdRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/verify': typeof VerifyRoute
+  '/applicant-cnic': typeof AuthenticatedApplicantCnicRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/application/$id': typeof AuthenticatedApplicationIdRouteWithChildren
+  '/application/$id/additional': typeof AuthenticatedApplicationIdAdditionalRoute
+  '/application/$id/details': typeof AuthenticatedApplicationIdDetailsRoute
+  '/application/$id/electoral': typeof AuthenticatedApplicationIdElectoralRoute
+  '/application/$id/fee': typeof AuthenticatedApplicationIdFeeRoute
+  '/application/$id/personal': typeof AuthenticatedApplicationIdPersonalRoute
+  '/application/$id/photo': typeof AuthenticatedApplicationIdPhotoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/verify': typeof VerifyRoute
+  '/applicant-cnic': typeof AuthenticatedApplicantCnicRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/application/$id': typeof AuthenticatedApplicationIdRouteWithChildren
+  '/application/$id/additional': typeof AuthenticatedApplicationIdAdditionalRoute
+  '/application/$id/details': typeof AuthenticatedApplicationIdDetailsRoute
+  '/application/$id/electoral': typeof AuthenticatedApplicationIdElectoralRoute
+  '/application/$id/fee': typeof AuthenticatedApplicationIdFeeRoute
+  '/application/$id/personal': typeof AuthenticatedApplicationIdPersonalRoute
+  '/application/$id/photo': typeof AuthenticatedApplicationIdPhotoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/verify': typeof VerifyRoute
+  '/_authenticated/applicant-cnic': typeof AuthenticatedApplicantCnicRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/application/$id': typeof AuthenticatedApplicationIdRouteWithChildren
+  '/_authenticated/application/$id/additional': typeof AuthenticatedApplicationIdAdditionalRoute
+  '/_authenticated/application/$id/details': typeof AuthenticatedApplicationIdDetailsRoute
+  '/_authenticated/application/$id/electoral': typeof AuthenticatedApplicationIdElectoralRoute
+  '/_authenticated/application/$id/fee': typeof AuthenticatedApplicationIdFeeRoute
+  '/_authenticated/application/$id/personal': typeof AuthenticatedApplicationIdPersonalRoute
+  '/_authenticated/application/$id/photo': typeof AuthenticatedApplicationIdPhotoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/verify'
+    | '/applicant-cnic'
+    | '/dashboard'
+    | '/application/$id'
+    | '/application/$id/additional'
+    | '/application/$id/details'
+    | '/application/$id/electoral'
+    | '/application/$id/fee'
+    | '/application/$id/personal'
+    | '/application/$id/photo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/verify'
+    | '/applicant-cnic'
+    | '/dashboard'
+    | '/application/$id'
+    | '/application/$id/additional'
+    | '/application/$id/details'
+    | '/application/$id/electoral'
+    | '/application/$id/fee'
+    | '/application/$id/personal'
+    | '/application/$id/photo'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/login'
+    | '/register'
+    | '/verify'
+    | '/_authenticated/applicant-cnic'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/application/$id'
+    | '/_authenticated/application/$id/additional'
+    | '/_authenticated/application/$id/details'
+    | '/_authenticated/application/$id/electoral'
+    | '/_authenticated/application/$id/fee'
+    | '/_authenticated/application/$id/personal'
+    | '/_authenticated/application/$id/photo'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  RegisterRoute: typeof RegisterRoute
+  VerifyRoute: typeof VerifyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +215,149 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify': {
+      id: '/verify'
+      path: '/verify'
+      fullPath: '/verify'
+      preLoaderRoute: typeof VerifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/applicant-cnic': {
+      id: '/_authenticated/applicant-cnic'
+      path: '/applicant-cnic'
+      fullPath: '/applicant-cnic'
+      preLoaderRoute: typeof AuthenticatedApplicantCnicRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/application/$id': {
+      id: '/_authenticated/application/$id'
+      path: '/application/$id'
+      fullPath: '/application/$id'
+      preLoaderRoute: typeof AuthenticatedApplicationIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/application/$id/additional': {
+      id: '/_authenticated/application/$id/additional'
+      path: '/additional'
+      fullPath: '/application/$id/additional'
+      preLoaderRoute: typeof AuthenticatedApplicationIdAdditionalRouteImport
+      parentRoute: typeof AuthenticatedApplicationIdRoute
+    }
+    '/_authenticated/application/$id/details': {
+      id: '/_authenticated/application/$id/details'
+      path: '/details'
+      fullPath: '/application/$id/details'
+      preLoaderRoute: typeof AuthenticatedApplicationIdDetailsRouteImport
+      parentRoute: typeof AuthenticatedApplicationIdRoute
+    }
+    '/_authenticated/application/$id/electoral': {
+      id: '/_authenticated/application/$id/electoral'
+      path: '/electoral'
+      fullPath: '/application/$id/electoral'
+      preLoaderRoute: typeof AuthenticatedApplicationIdElectoralRouteImport
+      parentRoute: typeof AuthenticatedApplicationIdRoute
+    }
+    '/_authenticated/application/$id/fee': {
+      id: '/_authenticated/application/$id/fee'
+      path: '/fee'
+      fullPath: '/application/$id/fee'
+      preLoaderRoute: typeof AuthenticatedApplicationIdFeeRouteImport
+      parentRoute: typeof AuthenticatedApplicationIdRoute
+    }
+    '/_authenticated/application/$id/personal': {
+      id: '/_authenticated/application/$id/personal'
+      path: '/personal'
+      fullPath: '/application/$id/personal'
+      preLoaderRoute: typeof AuthenticatedApplicationIdPersonalRouteImport
+      parentRoute: typeof AuthenticatedApplicationIdRoute
+    }
+    '/_authenticated/application/$id/photo': {
+      id: '/_authenticated/application/$id/photo'
+      path: '/photo'
+      fullPath: '/application/$id/photo'
+      preLoaderRoute: typeof AuthenticatedApplicationIdPhotoRouteImport
+      parentRoute: typeof AuthenticatedApplicationIdRoute
+    }
   }
 }
 
+interface AuthenticatedApplicationIdRouteChildren {
+  AuthenticatedApplicationIdAdditionalRoute: typeof AuthenticatedApplicationIdAdditionalRoute
+  AuthenticatedApplicationIdDetailsRoute: typeof AuthenticatedApplicationIdDetailsRoute
+  AuthenticatedApplicationIdElectoralRoute: typeof AuthenticatedApplicationIdElectoralRoute
+  AuthenticatedApplicationIdFeeRoute: typeof AuthenticatedApplicationIdFeeRoute
+  AuthenticatedApplicationIdPersonalRoute: typeof AuthenticatedApplicationIdPersonalRoute
+  AuthenticatedApplicationIdPhotoRoute: typeof AuthenticatedApplicationIdPhotoRoute
+}
+
+const AuthenticatedApplicationIdRouteChildren: AuthenticatedApplicationIdRouteChildren =
+  {
+    AuthenticatedApplicationIdAdditionalRoute:
+      AuthenticatedApplicationIdAdditionalRoute,
+    AuthenticatedApplicationIdDetailsRoute:
+      AuthenticatedApplicationIdDetailsRoute,
+    AuthenticatedApplicationIdElectoralRoute:
+      AuthenticatedApplicationIdElectoralRoute,
+    AuthenticatedApplicationIdFeeRoute: AuthenticatedApplicationIdFeeRoute,
+    AuthenticatedApplicationIdPersonalRoute:
+      AuthenticatedApplicationIdPersonalRoute,
+    AuthenticatedApplicationIdPhotoRoute: AuthenticatedApplicationIdPhotoRoute,
+  }
+
+const AuthenticatedApplicationIdRouteWithChildren =
+  AuthenticatedApplicationIdRoute._addFileChildren(
+    AuthenticatedApplicationIdRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedApplicantCnicRoute: typeof AuthenticatedApplicantCnicRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedApplicationIdRoute: typeof AuthenticatedApplicationIdRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedApplicantCnicRoute: AuthenticatedApplicantCnicRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedApplicationIdRoute: AuthenticatedApplicationIdRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  LoginRoute: LoginRoute,
+  RegisterRoute: RegisterRoute,
+  VerifyRoute: VerifyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

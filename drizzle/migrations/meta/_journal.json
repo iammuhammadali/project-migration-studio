@@ -8,6 +8,13 @@
       "when": 1794991935973,
       "tag": "0000_migrate_domicile_portal_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794992976909,
+      "tag": "0001_limit_public_certificate_verification",
+      "breakpoints": true
     }
   ]
 }
